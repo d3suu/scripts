@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+import requests, sys
+from bs4 import BeautifulSoup 
+soupa = BeautifulSoup(str(BeautifulSoup(requests.get("https://pl.bab.la/slownik/angielski-polski/" + sys.argv[1]).content, 'html.parser').find_all(class_="quick-result-overview")[0]), 'html.parser').find_all('a')
+list_ = []
+for a in soupa:
+	list_.append(a.get_text())
+
+for a in list_:
+	print(a + ", ")
